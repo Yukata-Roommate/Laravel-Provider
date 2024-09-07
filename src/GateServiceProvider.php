@@ -52,7 +52,7 @@ abstract class GateServiceProvider extends ServiceProvider
      * @param callable $callback
      * @return void
      */
-    protected function beforeGate(callable $callback): void
+    protected function before(callable $callback): void
     {
         Gate::before($callback);
     }
@@ -63,7 +63,7 @@ abstract class GateServiceProvider extends ServiceProvider
      * @param callable $callback
      * @return void
      */
-    protected function afterGate(callable $callback): void
+    protected function after(callable $callback): void
     {
         Gate::after($callback);
     }
@@ -76,7 +76,7 @@ abstract class GateServiceProvider extends ServiceProvider
      * @param array|null $abilities
      * @return void
      */
-    protected function resourceGate(string $name, string $class, array|null $abilities = null): void
+    protected function resource(string $name, string $class, array|null $abilities = null): void
     {
         Gate::resource($name, $class, $abilities);
     }
