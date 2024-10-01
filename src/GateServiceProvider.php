@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Gate;
  */
 abstract class GateServiceProvider extends ServiceProvider
 {
+    /*----------------------------------------*
+     * Abstract
+     *----------------------------------------*/
+
+    /**
+     * define Gate
+     * 
+     * @return void
+     */
+    abstract protected function define(): void;
+
+    /*----------------------------------------*
+     * Required
+     *----------------------------------------*/
+
     /**
      * define Gate
      *
@@ -22,13 +37,6 @@ abstract class GateServiceProvider extends ServiceProvider
     {
         $this->define();
     }
-
-    /**
-     * define Gate
-     * 
-     * @return void
-     */
-    abstract protected function define(): void;
 
     /*----------------------------------------*
      * Method

@@ -14,6 +14,21 @@ use Illuminate\Foundation\Http\Kernel;
  */
 abstract class MiddlewareServiceProvider extends ServiceProvider
 {
+    /*----------------------------------------*
+     * Abstract
+     *----------------------------------------*/
+
+    /**
+     * get middlewares
+     * 
+     * @return array<string>
+     */
+    abstract protected function middlewares(): array;
+
+    /*----------------------------------------*
+     * Required
+     *----------------------------------------*/
+
     /**
      * register Middleware
      * 
@@ -40,6 +55,10 @@ abstract class MiddlewareServiceProvider extends ServiceProvider
         }
     }
 
+    /*----------------------------------------*
+     * Method
+     *----------------------------------------*/
+
     /**
      * get Kernel
      * 
@@ -49,15 +68,4 @@ abstract class MiddlewareServiceProvider extends ServiceProvider
     {
         return app(KernelContract::class);
     }
-
-    /*----------------------------------------*
-     * Property
-     *----------------------------------------*/
-
-    /**
-     * get middlewares
-     * 
-     * @return array<string>
-     */
-    abstract protected function middlewares(): array;
 }

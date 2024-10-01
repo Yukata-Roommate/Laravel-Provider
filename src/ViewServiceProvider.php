@@ -11,6 +11,21 @@ use Illuminate\Support\ServiceProvider;
  */
 abstract class ViewServiceProvider extends ServiceProvider
 {
+    /*----------------------------------------*
+     * Abstract
+     *----------------------------------------*/
+
+    /**
+     * get views
+     * 
+     * @return array<string, string>
+     */
+    abstract protected function views(): array;
+
+    /*----------------------------------------*
+     * Required
+     *----------------------------------------*/
+
     /**
      * load views
      * 
@@ -18,7 +33,7 @@ abstract class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        foreach ($this->pairs() as $path => $namespace) {
+        foreach ($this->views() as $path => $namespace) {
             $this->loadViewsFrom($this->path($path), $namespace);
         }
     }
@@ -45,13 +60,6 @@ abstract class ViewServiceProvider extends ServiceProvider
 
         return $this->basePath;
     }
-
-    /**
-     * get path and namespace pairs
-     * 
-     * @return array<string, string>
-     */
-    abstract protected function pairs(): array;
 
     /*----------------------------------------*
      * Method

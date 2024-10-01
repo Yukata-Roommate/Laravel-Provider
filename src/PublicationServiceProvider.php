@@ -11,6 +11,21 @@ use Illuminate\Support\ServiceProvider;
  */
 abstract class PublicationServiceProvider extends ServiceProvider
 {
+    /*----------------------------------------*
+     * Abstract
+     *----------------------------------------*/
+
+    /**
+     * get publications
+     * 
+     * @return array<string, array<string, string>>
+     */
+    abstract protected function publications(): array;
+
+    /*----------------------------------------*
+     * Required
+     *----------------------------------------*/
+
     /**
      * publish 
      * 
@@ -25,37 +40,6 @@ abstract class PublicationServiceProvider extends ServiceProvider
 
             $this->publishes($paths, $this->commonGroup());
         }
-    }
-
-    /**
-     * make paths
-     * 
-     * @param array<string, string> $pair
-     * @return array<string, string>
-     */
-    protected function makePaths(array $pair): array
-    {
-        $publish = [];
-
-        foreach ($pair as $before => $after) {
-            $publish = array_merge($publish, $this->makePublish($before, $after));
-        }
-
-        return $publish;
-    }
-
-    /**
-     * make publish
-     * 
-     * @param string $before
-     * @param string $after
-     * @return array<string, string>
-     */
-    protected function makePublish(string $before, string $after): array
-    {
-        return [
-            $this->path($before) => $after,
-        ];
     }
 
     /*----------------------------------------*
@@ -100,20 +84,40 @@ abstract class PublicationServiceProvider extends ServiceProvider
         return $this->commonGroup;
     }
 
-    /**
-     * get publications
-     * 
-     * group => [
-     *    before path => after path
-     * ]
-     * 
-     * @return array<string, array<string, string>>
-     */
-    abstract protected function publications(): array;
-
     /*----------------------------------------*
      * Method
      *----------------------------------------*/
+
+    /**
+     * make paths
+     * 
+     * @param array<string, string> $pair
+     * @return array<string, string>
+     */
+    protected function makePaths(array $pair): array
+    {
+        $publish = [];
+
+        foreach ($pair as $before => $after) {
+            $publish = array_merge($publish, $this->makePublish($before, $after));
+        }
+
+        return $publish;
+    }
+
+    /**
+     * make publish
+     * 
+     * @param string $before
+     * @param string $after
+     * @return array<string, string>
+     */
+    protected function makePublish(string $before, string $after): array
+    {
+        return [
+            $this->path($before) => $after,
+        ];
+    }
 
     /**
      * get path to publications

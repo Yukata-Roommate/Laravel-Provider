@@ -13,6 +13,21 @@ use Illuminate\Foundation\AliasLoader;
  */
 abstract class AliasServiceProvider extends ServiceProvider
 {
+    /*----------------------------------------*
+     * Abstract
+     *----------------------------------------*/
+
+    /**
+     * get aliases
+     * 
+     * @return array<string, string>
+     */
+    abstract protected function aliases(): array;
+
+    /*----------------------------------------*
+     * Required
+     *----------------------------------------*/
+
     /**
      * register Alias
      * 
@@ -26,15 +41,4 @@ abstract class AliasServiceProvider extends ServiceProvider
             $loader->alias($alias, $class);
         }
     }
-
-    /*----------------------------------------*
-     * Property
-     *----------------------------------------*/
-
-    /**
-     * get aliases
-     * 
-     * @return array<string, string>
-     */
-    abstract protected function aliases(): array;
 }

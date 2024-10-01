@@ -11,6 +11,21 @@ use Illuminate\Support\ServiceProvider;
  */
 abstract class FacadeServiceProvider extends ServiceProvider
 {
+    /*----------------------------------------*
+     * Abstract
+     *----------------------------------------*/
+
+    /**
+     * get facades
+     * 
+     * @return array<string, string>
+     */
+    abstract protected function facades(): array;
+
+    /*----------------------------------------*
+     * Required
+     *----------------------------------------*/
+
     /**
      * register Facade
      * 
@@ -24,15 +39,4 @@ abstract class FacadeServiceProvider extends ServiceProvider
             });
         }
     }
-
-    /*----------------------------------------*
-     * Property
-     *----------------------------------------*/
-
-    /**
-     * get facades
-     * 
-     * @return array<string, string>
-     */
-    abstract protected function facades(): array;
 }

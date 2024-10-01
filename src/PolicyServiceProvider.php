@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Gate;
  */
 abstract class PolicyServiceProvider extends ServiceProvider
 {
+    /*----------------------------------------*
+     * Abstract
+     *----------------------------------------*/
+
+    /**
+     * get policies
+     * 
+     * @return array<string, string>
+     */
+    abstract protected function policies(): array;
+
+    /*----------------------------------------*
+     * Required
+     *----------------------------------------*/
+
     /**
      * define Policy
      * 
@@ -24,15 +39,4 @@ abstract class PolicyServiceProvider extends ServiceProvider
             Gate::policy($model, $policy);
         }
     }
-
-    /*----------------------------------------*
-     * Property
-     *----------------------------------------*/
-
-    /**
-     * get policies
-     * 
-     * @return array<string, string>
-     */
-    abstract protected function policies(): array;
 }
