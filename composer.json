@@ -1,0 +1,28 @@
+{
+    "name": "yukata-roommate/laravel-provider",
+    "description": "Easy to use provider for Laravel",
+    "version": "1.0.0",
+    "keywords": [
+        "yukata-roommate",
+        "php",
+        "laravel",
+        "package",
+        "provider",
+        "laravel-provider"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yukata Roommate"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "YukataRm\\Laravel\\Provider\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=8.3.0",
+        "laravel/framework": "^11.0 || ^12.0"
+    }
+}
